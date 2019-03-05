@@ -1,6 +1,6 @@
-# Web Auth II Guided Project
+# Web Auth III Guided Project
 
-Guided project for **Web Auth II** Module.
+Guided project for **Web Auth III** Module.
 
 ## Prerequisites
 
@@ -13,4 +13,4 @@ Guided project for **Web Auth II** Module.
 - [ ] type `yarn` or `npm i` to download dependencies.
 - [ ] type `yarn server` or `npm run server` to start the API.
 
-Please follow along as the instructor adds support for `sessions` and `cookies` to the API.
+Please follow along as the instructor adds support for `JSON Web Tokens (JWT)` to the API.

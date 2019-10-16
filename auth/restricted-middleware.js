@@ -4,6 +4,19 @@ const Users = require('../users/users-model.js');
 
 module.exports = (req, res, next) => {
   const { username, password } = req.headers;
+   const token = req.headers.authorization
+
+  if(token){
+    jwt.verify(token, secrets.jwtSecret, (err, decodedTool))
+    if (err){
+      res.ststus(401).json ({message: 'Bad Panda!'});
+    }
+    else {
+      req.username = decodedToken.username;
+      next()
+    }
+  }
+
 
   if (username && password) {
     Users.findBy({ username })

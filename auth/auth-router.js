@@ -18,6 +18,8 @@ router.post('/register', (req, res) => {
     });
 });
 
+
+
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
@@ -37,4 +39,15 @@ router.post('/login', (req, res) => {
     });
 });
 
+function gernateToken(user){
+  const payload = {
+    username: user.username,
+    subject:user.id,
+  };
+  const options = {
+    expiresIn: '1h'
+  }
+  return jwt.sign(payload, secfets.jwtSecret, options);
+}
 module.exports = router;
+

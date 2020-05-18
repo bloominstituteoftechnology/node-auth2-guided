@@ -1,5 +1,11 @@
-# Mac Files
+# Mac files
 .DS_Store
+
+# Allow use of Yarn
+package-lock.json
+
+# Removes database
+auth.db3
 
 # Logs
 logs

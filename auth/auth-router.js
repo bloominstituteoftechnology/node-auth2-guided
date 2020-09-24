@@ -48,6 +48,8 @@ router.post("/login", (req, res) => {
             userRole:"admin",
           },process.env.JWT_SECRET)
 
+          res.cookie("token", token)
+
 
           res.status(200).json({ message: "Welcome to our API" , token});
         } else {
@@ -62,11 +64,6 @@ router.post("/login", (req, res) => {
       message: "please provide username and password and the password shoud be alphanumeric",
     });
   }
-
-  // const token = jwt.sign({
-  //   userID:user.id,
-  //   userRole:"baisc",
-  // },"keept it secret keep it safe")
 });
 
 module.exports = router;

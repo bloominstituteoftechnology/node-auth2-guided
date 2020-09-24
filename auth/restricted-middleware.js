@@ -8,7 +8,7 @@ function restrict(role){
       message:"Invalid creds"
     }
     try{
-      const token = req.headers.authorization
+      const token = req.cookies.token //req.headers.authorization
 
       if(!token){
         console.log("true")

@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-
+const jwt=require("jsonwebtoken")
 const router = require("express").Router();
 
 const Users = require("../users/users-model.js");
@@ -19,6 +19,10 @@ router.post("/register", (req, res) => {
     // save the user to the database
     Users.add(credentials)
       .then(user => {
+        // const token = jwt.sign({
+        //   userID:user.id,
+        //   userRole:"baisc",
+        // },"keept it secret keep it safe")
         res.status(201).json({ data: user });
       })
       .catch(error => {
@@ -39,7 +43,13 @@ router.post("/login", (req, res) => {
       .then(([user]) => {
         // compare the password the hash stored in the database
         if (user && bcryptjs.compareSync(password, user.password)) {
-          res.status(200).json({ message: "Welcome to our API" });
+          const token = jwt.sign({
+            userID:user.id,
+            userRole:"admin",
+          },process.env.JWT_SECRET)
+
+
+          res.status(200).json({ message: "Welcome to our API" , token});
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }
@@ -52,6 +62,11 @@ router.post("/login", (req, res) => {
       message: "please provide username and password and the password shoud be alphanumeric",
     });
   }
+
+  // const token = jwt.sign({
+  //   userID:user.id,
+  //   userRole:"baisc",
+  // },"keept it secret keep it safe")
 });
 
 module.exports = router;

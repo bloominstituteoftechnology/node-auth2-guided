@@ -5,6 +5,8 @@ const router = require("express").Router();
 const Users = require("../users/users-model.js");
 const { isValid } = require("../users/users-service.js");
 
+
+
 router.post("/register", (req, res) => {
   const credentials = req.body;
 
@@ -19,11 +21,11 @@ router.post("/register", (req, res) => {
     // save the user to the database
     Users.add(credentials)
       .then(user => {
-        // const token = jwt.sign({
-        //   userID:user.id,
-        //   userRole:"baisc",
-        // },"keept it secret keep it safe")
-        res.status(201).json({ data: user });
+        const token = jwt.sign({
+          userID:user.id,
+          userRole:"admin",
+        }, process.env.JWT_SECRET, {expiresIn:"9d"})
+        res.status(201).json({ data: user, token });
       })
       .catch(error => {
         res.status(500).json({ message: error.message });
@@ -46,9 +48,9 @@ router.post("/login", (req, res) => {
           const token = jwt.sign({
             userID:user.id,
             userRole:"admin",
-          },process.env.JWT_SECRET)
+          },process.env.JWT_SECRET, {expiresIn:"9d"})
 
-          res.cookie("token", token)
+          // res.cookie("token", token)
 
 
           res.status(200).json({ message: "Welcome to our API" , token});
@@ -65,5 +67,14 @@ router.post("/login", (req, res) => {
     });
   }
 });
+const maxAge = 3*24*60*60
+const createToken=(id)=>{
+return jwt.sign({id}, process.env.JWT_SECRET,{
+  expiresIn:maxAge
+})
+}
 
 module.exports = router;
+
+
+

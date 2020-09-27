@@ -16,19 +16,43 @@ function findBy(filter) {
   return db("users").where(filter).orderBy("id");
 }
 
-function getById(userId){
-  return db("profile as p")
-  .join("users as u", "u.id", "p.user_id" )
+function getById(id){
+  return db("users as u")
+  .leftJoin("profile as p", "u.id", "p.user_id" )
   .select(
-    "p.id",
+    "u.id",
     "p.user_id",
+    "u.username",
     "p.first",
     "p.last",
-    "u.username",
     "p.bio",
     "p.profession"
   )
+  .where("u.id", id)
 }
+// function getById(id) {
+//   return db("users").where({ id }).first();
+// }
+
+// function getById(userId){
+//   return db("profile as p")
+//   .join("users as u", "u.id", "p.user_id" )
+//   .select(
+//     "p.id",
+//     "p.user_id",
+//     "p.first",
+//     "p.last",
+//     "u.username",
+//     "p.bio",
+//     "p.profession"
+//   )
+// }
+
+// function getById(id){
+//   return db("users as u")
+//   // .join("users as u", "u.id", "p.user_id" )
+//   .where({id}).select("u.id", "u.location").first()
+// }
 
 async function add(user) {
   try {

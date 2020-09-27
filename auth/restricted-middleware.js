@@ -29,7 +29,8 @@ function restrict(role){
               if (role && roles.indexOf(decoded.userRole)<roles.indexOf(role)){ //super admin
                 return res.status(403).json({message: "You are not allowed here"})//forbidden error
               }
-
+            
+              //CHECK IF USER EXISTS
 
       //RESTRICT IT TO ADMIN ONLY 
         

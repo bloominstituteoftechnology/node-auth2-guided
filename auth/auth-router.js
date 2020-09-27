@@ -24,8 +24,13 @@ router.post("/register", (req, res) => {
         const token = jwt.sign({
           userID:user.id,
           userRole:"admin",
-        }, process.env.JWT_SECRET, {expiresIn:"9d"})
+        }, process.env.JWT_SECRET, {expiresIn:"2d"})
         res.status(201).json({ data: user, token });
+
+                      // const existingUser = await User.findOne({email:email})
+              // if(existingUser)
+              // return res.status(400).json("an account with this email already exits")
+
       })
       .catch(error => {
         res.status(500).json({ message: error.message });

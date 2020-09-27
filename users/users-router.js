@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const db = require("../database/connection.js");
 
 const Users = require("./users-model.js");
 const {restrict} = require("../auth/restricted-middleware.js");
@@ -7,11 +8,24 @@ router.get("/", restrict("admin"), (req, res) => {
   // res.status(200).json({message:"wwaaay"})
   Users.find()
     .then(users => {
-      console.log("users->")
       res.status(200).json(users);
     })
     .catch(err => res.send(err));
 });
+
+
+router.get("/user/:id", async(req,res,next)=>{
+  const {id}=req.params
+  try{
+const user= await Users.getById(id)
+res.json(user)
+  }catch(err){
+      next(err)
+  }
+})
+
+
+
 
 module.exports = router;
 

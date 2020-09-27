@@ -16,9 +16,9 @@ function findBy(filter) {
   return db("users").where(filter).orderBy("id");
 }
 
-function getById(id){
+function getById(userID){
   return db("users as u")
-  .leftJoin("profile as p", "u.id", "p.user_id" )
+  .leftJoin("profile as p", "p.user_id", "u.id" )
   .select(
     "u.id",
     "p.user_id",
@@ -26,9 +26,10 @@ function getById(id){
     "p.first",
     "p.last",
     "p.bio",
-    "p.profession"
+    "p.profession",
+    "u.location"
   )
-  .where("u.id", id)
+  .where("u.id", userID)
 }
 // function getById(id) {
 //   return db("users").where({ id }).first();

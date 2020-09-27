@@ -57,8 +57,8 @@ router.post("/login", (req, res) => {
 
           // res.cookie("token", token)
 
-
-          res.status(200).json({ message: "Welcome to our API" , token});
+console.log("KITTY", user.username)
+          res.status(200).json({ message: "Welcome to our API" , id:user.id, username:user.username, token});
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }

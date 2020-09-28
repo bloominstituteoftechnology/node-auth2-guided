@@ -28,7 +28,8 @@ router.get("/user/:id", restrict("admin"), async(req,res,next)=>{
   const {id}=req.params
   // res.status(200).json({message:"hoorai"})
   try{
-const user= await Users.getById(id)
+const user= await Users.fetchByID(id)
+
 res.json(user)
   }catch(err){
       next(err)

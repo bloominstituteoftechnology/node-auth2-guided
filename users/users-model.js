@@ -2,14 +2,14 @@ const db = require("../database/connection.js");
 
 module.exports = {
   addUser,
-  addRest,
-  addProfile,
-  addProf,
+  addClient,
   find,
   findBy,
   findById,
   getById,
-  fetchByID
+  fetchByID,
+  fetchClientByID,
+  update
 };
 
 function find() {
@@ -52,25 +52,17 @@ function fetchByID(userID){
   .where("u.id", userID)
 }
 
-
-function addRest(prof,user_id) {
-    return db("profile").insert({user_id, ...prof}).then(ids=>{
-      return getById(ids[0])
-    });
-
+function fetchClientByID(clientID){
+  return db("clients as c")
+  .select(
+    "c.id",
+    "c.user_id",
+    "c.client_name",
+    "c.service",
+    "c.client_ImgUrl"
+  )
+  .where("c.user_id", clientID) //take all the posts with this user's id
 }
-
-// async function addRest(prof,user_id) {
-//   try {
-//     const [id] = await db("profile").insert({user_id, ...prof}).then(ids=>{
-//       return getById(ids[0])
-//     });
-
-//     return findById(id);
-//   } catch (error) {
-//     throw error;
-//   }
-// }
 
 
 async function addUser(user) {
@@ -83,26 +75,22 @@ async function addUser(user) {
   }
 }
 
-function addProf(profile){
-  return db("owners")
-  .insert(profile,"id")
-  .then(([id])=>findById(id))
+
+function addClient(client) {
+  console.log("CLIENTSS-->", client)
+  return db('clients')
+    .insert(client)
+    .then(ids => ({ id: ids[0] }));
+    // .then(ids=>{
+    //   return getById
+    // })
 }
 
 
-async function addProfile(profile){
-  console.log("PROFILE MODEL-->", profile)
-try{
-  const [id]= await db("profile").insert(()=>this.from("users as u")
-  .where("u.username","kay")
-  .select("user_id", "first"))
-
-  console.log("aiiiddi", id)
-
-  // const [id]= await db("profile").insert(profile,"user_id","first", "last","bio", "profession")
-  return findById(id)
-}catch (error){}
-throw error
+function update(id, changes) {
+  return db('users')
+    .where({ id })
+    .update(changes);
 }
 
 function findById(id) {

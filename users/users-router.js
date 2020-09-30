@@ -41,6 +41,7 @@ router.put('/user/:id', restrict("admin"), (req, res) => {
 });
 
 
+//ALL THE POSTS FROM USER #1
 router.post('/:id/posts', restrict("admin"), (req, res) => {
   // do your magic!
   // console.log("..waiting to post")
@@ -60,6 +61,16 @@ router.post('/:id/posts', restrict("admin"), (req, res) => {
 router.get('/:id/posts', restrict("admin"), async(req, res, next) => {
   try{
     const posts = await Users.fetchClientByID(req.params.id)
+
+    res.status(200).json(posts)
+  }
+catch(err){next(err)}
+});
+
+router.put('/:id/posts', restrict("admin"), async(req, res, next) => {
+  // res.status(200).json({message: "Something"})
+  try{
+    const posts = await Users.updateClients(req.params.id, req.body)
 
     res.status(200).json(posts)
   }

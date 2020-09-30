@@ -9,7 +9,9 @@ module.exports = {
   getById,
   fetchByID,
   fetchClientByID,
-  update
+  fetchClientPostByID,
+  update,
+  updateClients
 };
 
 function find() {
@@ -64,6 +66,18 @@ function fetchClientByID(clientID){
   .where("c.user_id", clientID) //take all the posts with this user's id
 }
 
+function fetchClientPostByID(clientID, usr_id){
+  return db("clients as c")
+  .select(
+    "c.id as client_id",
+    "c.user_id",
+    "c.client_name",
+    "c.service",
+    "c.client_ImgUrl"
+  )
+  .where("c.id", clientID, "c.client_name") 
+}
+
 
 async function addUser(user) {
   try {
@@ -89,6 +103,12 @@ function addClient(client) {
 
 function update(id, changes) {
   return db('users')
+    .where({ id })
+    .update(changes);
+}
+
+function updateClients(id, changes) {
+  return db('clients')
     .where({ id })
     .update(changes);
 }

@@ -11,7 +11,9 @@ module.exports = {
   fetchClientByID,
   fetchClientPostByID,
   update,
-  updateClients
+  updateClients,
+  removeClient,
+
 };
 
 function find() {
@@ -95,9 +97,6 @@ function addClient(client) {
   return db('clients')
     .insert(client)
     .then(ids => ({ id: ids[0] }));
-    // .then(ids=>{
-    //   return getById
-    // })
 }
 
 
@@ -115,4 +114,16 @@ function updateClients(id, changes) {
 
 function findById(id) {
   return db("users").where({ id }).first();
+}
+
+// function removeClient(id){
+//   return db("clients")
+//   .remove(id)
+//   .then(ids => ({ id: ids[0] }));
+// }
+
+function removeClient(id, changes) {
+  return db('clients')
+    .where({ id })
+    .delete(changes);
 }

@@ -4,7 +4,8 @@
     "description": "Auth 2 Guided Project",
     "main": "index.js",
     "scripts": {
-        "server": "nodemon --require dotenv/config index.js",
+        "watch": "nodemon --require dotenv/config index.js",
+        "server": "nodemon index.js",
         "start": "node index.js"
     },
     "keywords": [],
@@ -22,6 +23,7 @@
         "sqlite3": "^5.0.0"
     },
     "devDependencies": {
+        "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
         "nodemon": "^2.0.4"
     }

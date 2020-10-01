@@ -17,7 +17,7 @@ module.exports = {
 };
 
 function find() {
-  return db("users").select("id", "username", "first", "last","location","imgUrl","profession").orderBy("id");
+  return db("users").select("id", "username", "first", "last","location","imgUrl","profession", "bio").orderBy("id");
 }
 
 function findBy(filter) {

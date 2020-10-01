@@ -44,12 +44,9 @@ router.put('/user/:id', restrict("admin"), (req, res) => {
 //ALL THE POSTS FROM USER #1
 router.post('/:id/posts', restrict("admin"), (req, res) => {
   // do your magic!
-  // console.log("..waiting to post")
-  // res.status(210).json({message: "WAITING TO POST"});
   const postInfo = { ...req.body, user_id: req.params.id };
 
   Users.addClient(postInfo)
-  // res.status(210).json({message: "wait"});
 
   .then(post => {
     console.log("POST->", post)

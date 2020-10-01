@@ -4,7 +4,7 @@ const db = require("../database/connection.js");
 const Users = require("./users-model.js");
 const {restrict} = require("../auth/restricted-middleware.js");
 
-router.get("/", restrict("admin"), (req, res) => {
+router.get("/", (req, res) => {
   Users.find()
     .then(users => {
       res.status(200).json(users);
@@ -12,7 +12,7 @@ router.get("/", restrict("admin"), (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.get("/user/:id", restrict("admin"), async(req,res,next)=>{
+router.get("/user/:id", async(req,res,next)=>{
   const {id}=req.params
   // res.status(200).json({message:"hoorai"})
   try{
@@ -54,7 +54,7 @@ router.post('/:id/posts', restrict("admin"), (req, res) => {
   .catch(err=>next(err));
 });
 
-router.get('/:id/posts', restrict("admin"), async(req, res, next) => {
+router.get('/:id/posts', async(req, res, next) => {
   try{
     const posts = await Users.fetchClientByID(req.params.id)
 

@@ -5,7 +5,6 @@ const Users = require("./users-model.js");
 const {restrict} = require("../auth/restricted-middleware.js");
 
 router.get("/", restrict("admin"), (req, res) => {
-  // res.status(200).json({message:"wwaaay"})
   Users.find()
     .then(users => {
       res.status(200).json(users);

@@ -45,7 +45,7 @@ router.post('/:id/posts', restrict("admin"), async (req, res, next) => {
   // do your magic!
   try{
     const postInfo = { ...req.body, user_id: req.params.id };
-    const post = awaitUsers.addClient(postInfo)
+    const post = await Users.addClient(postInfo)
     res.status(210).json(post);
   }catch(err){next(err)}
 });

@@ -22,7 +22,7 @@ exports.seed = function(knex) {
           password: "2020mess",
           imgUrl: "https://i.imgur.com/PXeqdsH.jpg",
           first: "Princess Consuela",
-          last: "Banana-Hammock",
+          last: "Hammock",
           profession: "Cosmetologist",
           location: "Washington",
           bio:

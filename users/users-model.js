@@ -91,14 +91,11 @@ async function addUser(user) {
   }
 }
 
-
-async function addClient(client) {
+function addClient(client) {
   console.log("CLIENTSS-->", client)
-  const id= await db('clients')
+  return db('clients')
     .insert(client)
-    .returning('id')
-    return id
-    // .then(ids => ({ id: ids[0] }));
+    .then(ids => ({ id: ids[0] }));
 }
 
 

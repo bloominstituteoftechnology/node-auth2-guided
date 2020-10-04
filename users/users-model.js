@@ -92,10 +92,9 @@ async function addUser(user) {
 }
 
 function addClient(client) {
-  console.log("CLIENTSS-->", client)
   return db('clients')
     .insert(client)
-    .returning('id')
+    .returning('id','client_name')
     .then(ids => ({ id: ids[0] }));
 }
 

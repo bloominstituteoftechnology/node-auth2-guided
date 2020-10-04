@@ -8,6 +8,7 @@ router.get("/", async(req, res, next) => {
   try{
     const users= await Users.find()
     res.status(200).json(users);
+    console.log("WHY IS THIS NOT LOGGING IN")
   }catch(err){
     next(err)
   }
@@ -43,7 +44,11 @@ router.put('/user/:id', restrict("admin"), async(req, res, next) => {
 //ALL THE POSTS FROM USER #1
 router.post('/:id/posts', restrict("admin"), async (req, res, next) => {
   // do your magic!
+  console.log("POST")
+
   try{
+
+    console.log("req body", req.body)
     const postInfo = { ...req.body, user_id: req.params.id };
     const post = await Users.addClient(postInfo)
     res.status(210).json(post);

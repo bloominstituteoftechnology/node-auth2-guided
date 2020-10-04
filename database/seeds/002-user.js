@@ -21,8 +21,8 @@ exports.seed = function(knex) {
           username: "pcbh",
           password: "2020mess",
           imgUrl: "https://i.imgur.com/PXeqdsH.jpg",
-          first: "Princess Consuela",
-          last: "Hammock",
+          first: "Princess",
+          last: "Consuela",
           profession: "Cosmetologist",
           location: "Washington",
           bio:

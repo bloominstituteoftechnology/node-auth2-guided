@@ -1,0 +1,2 @@
+JWT
+<header data>.<payload data>.<hash/signature>

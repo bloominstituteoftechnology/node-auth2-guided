@@ -44,7 +44,7 @@ router.put('/user/:id', restrict("admin"), async(req, res, next) => {
 //ALL THE POSTS FROM USER #1
 router.post('/:id/posts', restrict("admin"), async (req, res, next) => {
   // do your magic!
-  console.log("POST")
+  console.log("POST", req.body)
 
   try{
 

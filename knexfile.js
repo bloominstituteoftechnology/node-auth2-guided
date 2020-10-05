@@ -1,27 +1,48 @@
 require("dotenv").config();
 
-const pgConnection = process.env.DATABASE_URL || "postgres://ywpfkpsxplftnm:c0fc239cb0b2ba329d1d108d977f49e3c776ea9835c494381f4369e97af42adb@ec2-18-211-86-133.compute-1.amazonaws.com:5432/d6h97b06f9brfu";
+
+const pgConnection = process.env.DATABASE_URL;
 // if using a local postgres server, please create the database manually, Knex will not create it autmatically
 
 module.exports = {
-  development: {
-    client: "sqlite3",
+    development: {
+    client: "pg",
     useNullAsDefault: true,
-    connection: {
-      filename: "./database/auth.db3",
-    },
+    connection: process.env.DATABASE_URL,
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done);
-      },
+      min:2,
+      max:10
+      // afterCreate: (conn, done) => {
+      //   conn.run("PRAGMA foreign_keys = ON", done);
+      // },
     },
     migrations: {
       directory: "./database/migrations",
+      tableName: "knex_migrations"
     },
     seeds: {
       directory: "./database/seeds",
     },
   },
+
+  // development: {
+  //   client: "sqlite3",
+  //   useNullAsDefault: true,
+  //   connection: {
+  //     filename: "./database/auth.db3",
+  //   },
+  //   pool: {
+  //     afterCreate: (conn, done) => {
+  //       conn.run("PRAGMA foreign_keys = ON", done);
+  //     },
+  //   },
+  //   migrations: {
+  //     directory: "./database/migrations",
+  //   },
+  //   seeds: {
+  //     directory: "./database/seeds",
+  //   },
+  // },
 
   production: {
     client: "pg",

@@ -30,14 +30,6 @@ router.post("/register", (req, res) => {
 
         console.log("USER LOG", user)
         console.log("CREDENTIALS", credentials)
-        // const profile_= {user_id: user.id
-        //   // first: "blahblah"
-        // }
-
-        // Users.addProfile(profile_)
-        // .then(prof=>
-        //   console.log("PROFILES-->", prof))
-        // .catch(err=>res.status(500).json({message:err.message}))
         const {id,username, role}=user
 
         res.status(201).json({id, username, role, token });

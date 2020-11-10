@@ -9,8 +9,8 @@ Guided project for **Node Auth 2** Module.
 
 ## Project Setup
 
-- [ ] fork and clone this repository.
-- [ ] **CD into the folder** where you cloned **your fork**.
+- [ ] clone this repository.
+- [ ] move inside the project.
 - [ ] type`npm i` to download dependencies.
 - [ ] type `npm run server` to start the API.
 

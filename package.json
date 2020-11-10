@@ -23,5 +23,9 @@
     "devDependencies": {
         "eslint": "^7.13.0",
         "nodemon": "^2.0.6"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LambdaSchool/node-auth2-guided.git"
     }
 }

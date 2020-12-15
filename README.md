@@ -5,7 +5,7 @@ Guided project for **Node Auth 2** Module.
 ## Prerequisites
 
 - [SQLite Studio](https://sqlitestudio.pl/index.rvt?act=download) installed.
-- Optional: PostgreSQL and pgAdmin 4 installed.
+- [Postman](https://www.postman.com/) installed.
 
 ## Project Setup
 

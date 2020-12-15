@@ -1,31 +1,32 @@
 {
-    "name": "node-2-guided",
-    "version": "1.0.0",
-    "description": "Auth 2 Guided Project",
-    "main": "index.js",
-    "scripts": {
-        "server": "nodemon",
-        "start": "node index.js"
-    },
-    "keywords": [],
-    "author": "Lambda School",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "cors": "^2.8.5",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "helmet": "^4.2.0",
-        "knex": "^0.21.12",
-        "knex-cleaner": "^1.3.1",
-        "pg": "^8.4.2",
-        "sqlite3": "^5.0.0"
-    },
-    "devDependencies": {
-        "eslint": "^7.13.0",
-        "nodemon": "^2.0.6"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/LambdaSchool/node-auth2-guided.git"
-    }
+  "name": "node-2-guided",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon",
+    "start": "node index.js",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
+    "ketchup": "git fetch && git reset --hard origin/lecture"
+  },
+  "author": "Lambda School",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "knex": "^0.21.13",
+    "knex-cleaner": "^1.3.1",
+    "pg": "^8.5.1",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "nodemon": "^2.0.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LambdaSchool/node-auth2-guided.git"
+  }
 }

@@ -7,8 +7,6 @@ const getUsersBtn = document.querySelector('#getUsersBtn')
 const message = document.querySelector('#message')
 const userList = document.querySelector('#userList')
 
-console.log(document.cookie)
-
 const handle = action => evt => {
   evt.preventDefault()
   const credentials = {

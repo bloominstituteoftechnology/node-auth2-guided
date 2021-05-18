@@ -17,7 +17,9 @@ router.post('/register', checkCredentials, (req, res, next) => {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json(saved);
+      res.status(201).json({
+        message: `Great to have you, ${saved.username}`,
+      });
     })
     .catch(next); // our custom err handling middleware in server.js will trap this
 });
@@ -29,7 +31,7 @@ router.post('/login', checkCredentials, (req, res, next) => {
     .then(([user]) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         res.status(200).json({
-          message: `Welcome ${user.username}!`,
+          message: `Welcome back ${user.username}!`,
         });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });

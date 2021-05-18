@@ -59,7 +59,7 @@ const getUsers = evt => {
         users.forEach(user => {
           const div = document.createElement('div')
           div.textContent = user.username
-          userList.prepend(div)
+          userList.append(div)
         })
       } else {
         message.textContent = users.message

@@ -5,7 +5,8 @@ module.exports = (req, res, next) => {
   if (valid) {
     next();
   } else {
-    res.status(422).json({
+    next({
+      status: 422,
       message: 'Please provide username and password and the password shoud be alphanumeric',
     });
   }

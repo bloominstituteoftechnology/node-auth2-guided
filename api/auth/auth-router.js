@@ -17,9 +17,7 @@ router.post('/register', checkAuthPayload, (req, res, next) => {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json({
-        message: `Great to have you, ${saved.username}`,
-      });
+      res.status(201).json({ message: `Great to have you, ${saved.username}` });
     })
     .catch(next); // our custom err handling middleware in server.js will trap this
 });
@@ -34,7 +32,7 @@ router.post('/login', checkAuthPayload, (req, res, next) => {
           message: `Welcome back ${user.username}!`,
         });
       } else {
-        res.status(401).json({ message: 'Invalid Credentials' });
+        next({ status: 401, message: 'Invalid Credentials' });
       }
     })
     .catch(next);

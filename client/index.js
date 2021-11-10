@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 const usernameInput = document.querySelector('#usernameInput')
 const passwordInput = document.querySelector('#passwordInput')
 const registerBtn = document.querySelector('#registerBtn')
@@ -20,7 +21,7 @@ const handle = action => evt => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      console.log(data)
       message.textContent = data.message
       if (data.token) {
         localStorage.setItem('token', data.token)

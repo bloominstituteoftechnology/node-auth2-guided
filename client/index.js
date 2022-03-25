@@ -64,6 +64,7 @@ const getUsers = evt => {
         })
       } else {
         message.textContent = users.message
+        userList.textContent = ''
       }
     })
     .catch(err => { message.textContent = err.message; debugger })

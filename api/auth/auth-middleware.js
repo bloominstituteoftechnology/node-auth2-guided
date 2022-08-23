@@ -1,6 +1,26 @@
+const jwt = require('jsonwebtoken');
+
+const { JWT_SECRET } = require('../../config');
+
 // AUTHENTICATION
 const restricted = (req, res, next) => {
-  next()
+  const token = req.headers.authorization;
+
+  if(token == null) {
+    next({ status: 403, message: 'Forbidden' });
+    return;
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
+    if(err) {
+      console.log(err);
+      next({ status: 403, message: 'Forbidden' });
+      return;
+    }
+
+    req.decodedToken = decodedToken;
+    next();
+  });
 }
 
 // AUTHORIZATION

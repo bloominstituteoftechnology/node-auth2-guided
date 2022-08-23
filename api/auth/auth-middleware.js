@@ -6,13 +6,13 @@ const { JWT_SECRET } = require('../../config');
 const restricted = (req, res, next) => {
   const token = req.headers.authorization;
 
-  if(token == null) {
+  if (token == null) {
     next({ status: 403, message: 'Forbidden' });
     return;
   }
 
   jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
-    if(err) {
+    if (err) {
       console.log(err);
       next({ status: 403, message: 'Forbidden' });
       return;
@@ -24,13 +24,23 @@ const restricted = (req, res, next) => {
 }
 
 // AUTHORIZATION
-const checkRole = (req, res, next) => {
-  if(req.decodedToken.role !== 'admin') {
+const checkRole = role => (req, res, next) => {
+  if(req.decodedToken.role !== role) {
     next({ status: 403, message: 'Forbidden' });
   } else {
     next()
   }
 }
+
+// function checkRole(role) {
+//   return function (req, res, next) {
+//     if (req.decodedToken.role !== role) {
+//       next({ status: 403, message: 'Forbidden' });
+//     } else {
+//       next()
+//     }
+//   }
+// }
 
 module.exports = {
   restricted,

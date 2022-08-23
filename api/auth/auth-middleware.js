@@ -25,8 +25,11 @@ const restricted = (req, res, next) => {
 
 // AUTHORIZATION
 const checkRole = (req, res, next) => {
-  console.log(req.decodedToken);
-  next()
+  if(req.decodedToken.role !== 'admin') {
+    next({ status: 403, message: 'Forbidden' });
+  } else {
+    next()
+  }
 }
 
 module.exports = {

@@ -25,6 +25,7 @@ const restricted = (req, res, next) => {
 
 // AUTHORIZATION
 const checkRole = (req, res, next) => {
+  console.log(req.decodedToken);
   next()
 }
 
